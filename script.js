@@ -4,33 +4,38 @@ let userChoice;
 let computerChoice;
 let comparisonResult;
 
-playGame();
-declareWinner();
+const btn_rock = document.querySelector('#btn_rock');
+const btn_paper = document.querySelector('#btn_paper');
+const btn_scissors = document.querySelector('#btn_scissors');
 
-function playGame() {
-    let roundsNumber = 3;
-    while (computerScore < roundsNumber && userScore < roundsNumber) {
-        playRound();
-    }
-}
-function playRound() {
-    userChoice = getUserChoice();
+btn_rock.addEventListener('click', () => {
+    playRound("rock");
+});
+btn_paper.addEventListener('click', () => {
+    playRound("paper");
+});
+btn_scissors.addEventListener('click', () => {
+    playRound("scissors");
+});
+
+const variableContainer = document.querySelector('#variable-container');
+
+const content = document.createElement('div');
+content.classList.add('content');
+content.textContent = "variable content will appear here";
+
+variableContainer.appendChild(content);
+
+function playRound(choice) {
+    userChoice = choice;
     computerChoice = getComputerChoice();
-    window.alert( "Your choice is " + userChoice );
-    window.alert( "Computer choice is " + computerChoice );
+    alert( "Your choice is " + userChoice );
+    alert( "Computer choice is " + computerChoice );
     comparisonResult = compareChoices();
     window.alert(comparisonResult);
     updateScore();
     window.alert("Computer: " + computerScore + "You: " + userScore );
 }
-function getUserChoice() {
-    let convertedUserChoice
-    do {
-        let userChoice = prompt("Rock, paper, scissors?");
-        convertedUserChoice = userChoice.toLowerCase()
-    } while (convertedUserChoice !== "rock" && convertedUserChoice !== "paper" && convertedUserChoice !== "scissors")
-    return convertedUserChoice;
-} 
 function getComputerChoice() {
     let choiceNumber = Math.floor(Math.random() * 3);
     if (choiceNumber < 1) {

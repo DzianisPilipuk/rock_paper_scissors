@@ -6,20 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="nav">
         <h1>Rock Paper Scissors</h1>
     </div>
     <div class="container">
-        <div></div>
-        <div class="btn-wrapper">
-            <button class="btn" type="button">rock</button>
-            <button class="btn" type="button">paper</button>
-            <button class="btn" type="button">scissors</button>
+        <div>
+            <h2>Make your choice</h2>
         </div>
-        <div class="computer-choice">
+        <div class="btn-wrapper">
+            <button id="btn_rock">rock</button>
+            <button id="btn_paper">paper</button>
+            <button id="btn_scissors">scissors</button>
+        </div>
+        <div id="variable-container">
         </div>
     </div>
 </body>
