@@ -1,7 +1,7 @@
 let computerScore = 0;
 let userScore = 0;
-let userChoice;
-let computerChoice;
+let userChoice = "";
+let computerChoice = "";
 let comparisonResult;
 
 const btn_rock = document.querySelector('#btn_rock');
@@ -18,23 +18,29 @@ btn_scissors.addEventListener('click', () => {
     playRound("scissors");
 });
 
-const variableContainer = document.querySelector('#variable-container');
+function displayPlayerChoice() {
+    document.getElementById("user-choice-displayer").innerHTML = "Your choice: " + userChoice
+}
+function displayComputerChoice() {
+    document.getElementById("computer-choice-displayer").innerHTML = "Computer choice: " + computerChoice
+}
+function displayRoundWinner() {
+    document.getElementById("round-winner-displayer").innerHTML = comparisonResult
+}
+function displayScore() {
+    document.getElementById("score-displayer").innerHTML = "You: " + userScore + " Computer: " + computerScore
+}
 
-const content = document.createElement('div');
-content.classList.add('content');
-content.textContent = "variable content will appear here";
-
-variableContainer.appendChild(content);
 
 function playRound(choice) {
     userChoice = choice;
     computerChoice = getComputerChoice();
-    alert( "Your choice is " + userChoice );
-    alert( "Computer choice is " + computerChoice );
+    displayPlayerChoice();
+    displayComputerChoice();
     comparisonResult = compareChoices();
-    window.alert(comparisonResult);
+    displayRoundWinner();
     updateScore();
-    window.alert("Computer: " + computerScore + "You: " + userScore );
+    displayScore();
 }
 function getComputerChoice() {
     let choiceNumber = Math.floor(Math.random() * 3);
