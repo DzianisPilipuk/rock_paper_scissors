@@ -2,105 +2,61 @@ let computerScore = 0;
 let userScore = 0;
 let userChoice = "";
 let computerChoice = "";
-let comparisonResult;
+let comparisonResult
+let gameWinner = "";
 
-const btn_rock = document.querySelector('#btn_rock');
-const btn_paper = document.querySelector('#btn_paper');
-const btn_scissors = document.querySelector('#btn_scissors');
-
-btn_rock.addEventListener('click', () => {
-    playRound("rock");
-});
-btn_paper.addEventListener('click', () => {
-    playRound("paper");
-});
-btn_scissors.addEventListener('click', () => {
-    playRound("scissors");
-});
-
-function displayPlayerChoice() {
-    document.getElementById("user-choice-displayer").innerHTML = "Your choice: " + userChoice
-}
-function displayComputerChoice() {
-    document.getElementById("computer-choice-displayer").innerHTML = "Computer choice: " + computerChoice
-}
-function displayRoundWinner() {
-    document.getElementById("round-winner-displayer").innerHTML = comparisonResult
-}
-function displayScore() {
-    document.getElementById("score-displayer").innerHTML = "You: " + userScore + " Computer: " + computerScore
-}
-
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        playRound(button.value);
+    })
+})
 
 function playRound(choice) {
     userChoice = choice;
     computerChoice = getComputerChoice();
-    displayPlayerChoice();
-    displayComputerChoice();
     comparisonResult = compareChoices();
-    displayRoundWinner();
-    updateScore();
-    displayScore();
+    displayVariableInformation();
+}
+function displayVariableInformation() {
+    document.getElementById("user-choice-displayer").innerHTML = "Your choice: " + userChoice;
+    document.getElementById("computer-choice-displayer").innerHTML = "Computer choice: " + computerChoice;
+    document.getElementById("round-winner-displayer").innerHTML = comparisonResult;
+    document.getElementById("score-displayer").innerHTML = "You: " + userScore + " Computer: " + computerScore;
+    if (userScore == 5 || computerScore == 5) {
+        document.getElementById("game-winner-displayer").innerHTML = declareWinner() + "<br>Reload the page to try one more time";
+        disableButtons();
+    }
 }
 function getComputerChoice() {
-    let choiceNumber = Math.floor(Math.random() * 3);
-    if (choiceNumber < 1) {
-        return "rock";
-    }
-    else if (choiceNumber < 2) {
-        return "paper";
-    }
-    else {
-        return "scissors";
-    }
+    const choices = ['rock', 'paper', 'scissors']
+    return choices[~~(Math.random()*choices.length)]
 }
 function compareChoices() {
     if (userChoice == computerChoice) {
-        return 'Draw';
+        return "It's a tie, you both chose " + userChoice;
     }
-    else if (userChoice == "rock") {
-        if (computerChoice == "scissors") {
-            return "You Win";
-        }
-        else {
-            return "Computer Win";
-        }
-    }
-    else if (userChoice == "paper") {
-        if (computerChoice == "rock") {
-            return "You Win";
-        }
-        else {
-            return "Computer Win";
-        }
-    }
-    else if (userChoice == "scissors") {
-        if (computerChoice == "paper") {
-            return "You Win";
-        }
-        else {
-            return "Computer Win";
-        }
-    }
-    else {
-        return "Computer Win";
-    }
-}
-function updateScore() {
-    if (comparisonResult == "Computer Win") {
-        computerScore++;
-    }
-    else if (comparisonResult == "You Win") {
+    else if ((userChoice == "rock" && computerChoice == "scissors") ||
+    (userChoice == "paper" && computerChoice == "rock") ||
+    (userChoice == "scissors" && computerChoice == "paper")) {
         userScore++;
+        return "You Win, " + userChoice + " beats " + computerChoice;
     }
     else {
+        computerScore++;
+        return "Computer Win, " + computerChoice + " beats " + userChoice;
     }
 }
 function declareWinner() {
     if (userScore > computerScore){
-        window.alert ("You Win, congratulations!")
+        return ("You Win, congratulations!")
     }
     else {
-        window.alert ("You Lose, sasi!")
+        return ("You Lose!")
     }
+}
+function disableButtons() {
+    buttons.forEach(button => {
+        button.disabled = true
+    })
 }
