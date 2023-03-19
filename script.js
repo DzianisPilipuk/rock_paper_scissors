@@ -3,7 +3,6 @@ let userScore = 0;
 let userChoice = "";
 let computerChoice = "";
 let comparisonResult
-let gameWinner = "";
 
 const buttons = document.querySelectorAll('button')
 buttons.forEach(button => {
@@ -19,12 +18,14 @@ function playRound(choice) {
     displayVariableInformation();
 }
 function displayVariableInformation() {
-    document.getElementById("user-choice-displayer").innerHTML = "Your choice: " + userChoice;
-    document.getElementById("computer-choice-displayer").innerHTML = "Computer choice: " + computerChoice;
+    // document.getElementById("user-choice-displayer").innerHTML = "Your choice: " + userChoice;
+    document.getElementById("computer-choice-displayer").innerHTML = computerChoice;
     document.getElementById("round-winner-displayer").innerHTML = comparisonResult;
-    document.getElementById("score-displayer").innerHTML = "You: " + userScore + " Computer: " + computerScore;
+    document.getElementById("user-score-displayer").innerHTML = userScore;
+    document.getElementById("computer-score-displayer").innerHTML = computerScore;
     if (userScore == 5 || computerScore == 5) {
-        document.getElementById("game-winner-displayer").innerHTML = declareWinner() + "<br>Reload the page to try one more time";
+        document.getElementById("game-winner-displayer").innerHTML = declareWinner();
+        document.getElementById("reload-notification").innerHTML = "Reload the page to try one more time";
         disableButtons();
     }
 }

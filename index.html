@@ -6,34 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="nav">
-        <h1>Rock Paper Scissors</h1>
-    </div>
     <div class="container">
+        <div class="header">
+            <h1>Rock Paper Scissors</h1>
+        </div>
         <div>
             Make your choice
         </div>
-        <div class="btn-wrapper">
-            <button value="rock">rock</button>
-            <button value="paper">paper</button>
-            <button value="scissors">scissors</button>
+        <div class="buttons-wrapper">
+            <button value="rock" class="btn">rock</button>
+            <button value="paper" class="btn">paper</button>
+            <button value="scissors" class="btn">scissors</button>
         </div>
         <div class="variable-container">
-            <div id="user-choice-displayer">
+            <!-- <div id="user-choice-displayer">
                 Your choice:
+            </div> -->
+            <div class="computer-choice">
+                <div>
+                    Computer choice:
+                </div>
+                <div id="computer-choice-displayer" class="computer-choice-displayer">
+                </div>
             </div>
-            <div id="computer-choice-displayer">
-                Computer choice:
+            <div class="round-result">
+                <div id="round-winner-displayer" class="round-winner-displayer">
+                </div>
+                <div class="score-displayers-wrapper">
+                    <div class="score-displayer">
+                        <div class="party-displayer">
+                            You:
+                        </div>
+                        <div id="user-score-displayer">
+                            0
+                        </div>
+                    </div>
+                    <div class="score-displayer">
+                        <div class="party-displayer">
+                            Computer:
+                        </div>
+                        <div id="computer-score-displayer">
+                            0
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="round-winner-displayer">
-            </div>
-            <div id="score-displayer">
-                <br>You: Computer:
-            </div>
-            <div id="game-winner-displayer">
+            <div class="game-result-wrapper">
+                <div id="game-winner-displayer">
+                </div>
+                <div id="reload-notification">
+                </div>
             </div>
         </div>
     </div>
