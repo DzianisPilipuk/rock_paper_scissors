@@ -40,6 +40,12 @@ body {
     display: flex;
     align-items: center;
 }
+.round-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .round-winner-displayer {
     height: 70px;
     display: flex;
@@ -50,13 +56,13 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 300px;
+    width: 230px;
+    margin-left: 5px;
     height: 100px;
 }
 .score-displayer {
     font-size: 1.5em;
     font-weight: bold;
-    width: 100px;
     display: flex;
     align-items: center;
     flex-direction: column;
